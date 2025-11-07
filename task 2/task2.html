@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>watch.it – Movie Streaming Service</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dark: #070410;
+      --purple: #231651;
+      --teal: #4dccbd;
+      --yellow: #eef36a;
+      --white: #ffffff;
+
+      --max-width: 1000px;
+      --space-small: 16px;
+      --space-medium: 24px;
+      --space-large: 48px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--dark);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Header */
+    header {
+      width: 100%;
+      background-color: var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-small) var(--space-large);
+      color: var(--white);
+    }
+
+    .logo {
+      font-family: 'Teko', sans-serif;
+      font-size: 2em;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: var(--space-small);
+      justify-content: center;
+      flex: 1;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Teko', sans-serif;
+      font-size: 1.25em;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+    }
+
+    .search-btn {
+      font-family: 'Teko', sans-serif;
+      font-size: 1.25em;
+      padding: 6px 16px;
+      background-color: var(--yellow);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: var(--dark);
+      transition: 0.3s;
+    }
+
+    .search-btn:hover {
+      background-color: var(--teal);
+      color: var(--white);
+    }
+
+    /* Main */
+    main {
+      max-width: var(--max-width);
+      width: 100%;
+      background-color: var(--white);
+      color: var(--dark);
+      padding: var(--space-medium);
+      margin-top: var(--space-medium);
+      border-radius: 6px;
+    }
+
+    /* Featured (Desktop Only) */
+    .featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      background-color: var(--teal);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: var(--space-large);
+      color: var(--dark);
+    }
+
+    .featured img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .featured-content {
+      padding: var(--space-medium);
+    }
+
+    .featured-content h2 {
+      font-family: 'Teko', sans-serif;
+      font-size: 2.5em;
+      margin-bottom: var(--space-small);
+    }
+
+    .featured-content p {
+      margin-bottom: var(--space-small);
+      font-size: 1em;
+      line-height: 1.5;
+    }
+
+    /* Yellow button */
+    .watch-now {
+      width: 100%;
+      text-align: center;
+      font-family: 'Teko', sans-serif;
+      font-size: 1.5em;
+      padding: 12px 0;
+      background-color: var(--yellow);
+      border: none;
+      border-radius: 10px;
+      color: var(--dark);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .watch-now:hover {
+      background-color: var(--purple);
+      color: var(--white);
+    }
+
+    /* Movie grid */
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-medium);
+    }
+
+    .movie {
+      background-color: var(--teal);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      color: var(--dark);
+    }
+
+    .movie img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .movie-content {
+      padding: var(--space-small);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .movie-content h3 {
+      font-family: 'Teko', sans-serif;
+      font-size: 1.75em;
+      margin-bottom: var(--space-small);
+    }
+
+    .movie-content p {
+      font-size: 1em;
+      margin-bottom: var(--space-small);
+      line-height: 1.4;
+    }
+
+    footer {
+      text-align: center;
+      margin: var(--space-large) 0;
+      font-size: 0.875em;
+      color: var(--teal);
+    }
+
+    /* -------- Tablet Layout -------- */
+    @media (max-width: 1024px) and (min-width: 720px) {
+      .featured {
+        display: none;
+      }
+
+      main {
+        padding: var(--space-medium);
+      }
+
+      .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* -------- Mobile Layout -------- */
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-small);
+      }
+
+      nav {
+        margin: var(--space-small) 0;
+      }
+
+      main {
+        padding: var(--space-small);
+      }
+
+      .featured {
+        display: none;
+      }
+
+      .movie-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">watch.it</div>
+    <nav>
+      <a href="#">Action</a>
+      <a href="#">Comedy</a>
+      <a href="#">Romance</a>
+      <a href="#">Drama</a>
+    </nav>
+    <button class="search-btn">SEARCH</button>
+  </header>
+
+  <main>
+    <!-- Featured Movie (Desktop Only) -->
+    <section class="featured">
+      <img src="barbie.jpg" alt="Barbie Poster">
+      <div class="featured-content">
+        <h2>Barbie (2023)</h2>
+        <p>Step into the dazzling world of Barbie as she embarks on an unexpected journey from her perfect doll life to the real world.</p>
+        <button class="watch-now">WATCH NOW</button>
+      </div>
+    </section>
+
+    <!-- Movie Grid -->
+    <section class="movie-grid">
+      <div class="movie">
+        <img src="hidden-figures.jpg" alt="Hidden Figures Poster">
+        <div class="movie-content">
+          <h3>Hidden Figures (2016)</h3>
+          <p>Three unsung heroes of NASA's space race take the spotlight in this inspiring true story of brilliance, perseverance, and unity.</p>
+          <button class="watch-now">WATCH NOW</button>
+        </div>
+      </div>
+
+      <div class="movie">
+        <img src="hook.jpg" alt="Hook Poster">
+        <div class="movie-content">
+          <h3>Hook (1991)</h3>
+          <p>Rediscover Neverland in this thrilling twist on Peter Pan! Robin Williams stars as a grown-up Peter who must rediscover his inner child.</p>
+          <button class="watch-now">WATCH NOW</button>
+        </div>
+      </div>
+
+      <div class="movie">
+        <img src="la-la-land.jpg" alt="La La Land Poster">
+        <div class="movie-content">
+          <h3>La La Land (2016)</h3>
+          <p>Love, dreams, and the magic of LA take center stage in this musical masterpiece about passion and ambition.</p>
+          <button class="watch-now">WATCH NOW</button>
+        </div>
+      </div>
+
+      <div class="movie">
+        <img src="palm-springs.jpg" alt="Palm Springs Poster">
+        <div class="movie-content">
+          <h3>Palm Springs (2020)</h3>
+          <p>A never-ending wedding day turns into an unforgettable time-loop romance! Two strangers find love and meaning in chaos.</p>
+          <button class="watch-now">WATCH NOW</button>
+        </div>
+      </div>
+
+      <div class="movie">
+        <img src="who-framed-roger-rabbit.jpg" alt="Who Framed Roger Rabbit Poster">
+        <div class="movie-content">
+          <h3>Who Framed Roger Rabbit (1988)</h3>
+          <p>In a world where cartoons and humans coexist, a detective must solve a zany, high-stakes mystery filled with humor and heart.</p>
+          <button class="watch-now">WATCH NOW</button>
+        </div>
+      </div>
+
+      <div class="movie">
+        <img src="barbie.jpg" alt="Barbie Poster">
+        <div class="movie-content">
+          <h3>Barbie (2023)</h3>
+          <p>Step into the dazzling world of Barbie as she embarks on an unexpected journey from her perfect doll life to the real world.</p>
+          <button class="watch-now">WATCH NOW</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 watch.it — All Rights Reserved</p>
+  </footer>
+</body>
+</html>
